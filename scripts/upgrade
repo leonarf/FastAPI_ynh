@@ -8,45 +8,34 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemctl --service=$app --action="stop"
+ynh_systemctl --service="$app" --action="stop"
 
 #=================================================
-# SETUP SYSTEMD
+# ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-ynh_script_progression "Configuring systemd service '$app'..."
+ynh_script_progression "Ensuring downward compatibility..."
 
-ynh_config_add_systemd
+# Legacy settings
+ynh_app_setting_delete --key="log_file"
 
 #=================================================
 # PYTHON VIRTUALENV
 #=================================================
-ynh_script_progression "Create and setup Python virtualenv..."
+ynh_script_progression "Upgrading FastAPI via Python virtualenv..."
 
 ynh_config_add --template="requirements.txt" --destination="$install_dir/requirements.txt"
 
 myynh_setup_python_venv
 
 #=================================================
-# copy config files
+# UPDATE A CONFIG FILE
 # ================================================
-ynh_script_progression "Create $app configuration files..."
+ynh_script_progression "Updating $app's configuration files..."
 
 ynh_config_add --template="gunicorn.conf.py" --destination="$install_dir/gunicorn.conf.py"
+ynh_config_add --template="__init__.py" --destination="$data_dir/FastAPIAppFolder/__init__.py"
 
-#=================================================
-# SETUP LOGROTATE
-#=================================================
-ynh_script_progression "Upgrading logrotate configuration..."
-
-# Use logrotate to manage app-specific logfile(s)
-ynh_config_add_logrotate "$log_file"
-
-#=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
-ynh_script_progression "Set file permissions..."
-
-myynh_fix_file_permissions
+chown -R "$app:" "$data_dir"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -56,15 +45,17 @@ ynh_script_progression "Upgrading system configurations related to $app..."
 ynh_config_add_nginx
 
 ynh_config_add_systemd
+yunohost service add "$app" --description="Gunicorn running a FastAPI app" --log="/var/log/$app/$app.log"
 
-yunohost service add $app --description="Gunicorn running a FastAPI app" --log="/var/log/$app/$app.log"
+ynh_config_add_logrotate
+chown -R "$app:$app" "/var/log/$app"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service=$app --action="start"
+ynh_systemctl --service="$app" --action="start"
 
 #=================================================
 # END OF SCRIPT

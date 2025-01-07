@@ -4,72 +4,54 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# SETTINGS
+# INITIALIZE AND STORE SETTINGS
 #=================================================
-ynh_script_progression "Storing installation settings..."
 
-# Logging:
-log_file="/var/log/$app/$app.log"
-ynh_app_setting_set --key=log_file --value="$log_file"
-
-#=================================================
-# SETUP LOG FILE
-#=================================================
-ynh_script_progression "Setup logging..."
-
-myynh_setup_log_file
-
-# Use logrotate to manage application logfile(s)
-ynh_config_add_logrotate "$log_file"
+# Keys of the config panel
+requirements_path="requirements.txt"
+ynh_app_setting_set --key="requirements_path" --value="$requirements_path"
 
 #=================================================
 # PYTHON VIRTUALENV
 #=================================================
-ynh_script_progression "Create and setup Python virtualenv..."
+ynh_script_progression "Installing FastAPI via Python virtualenv..."
 
 ynh_config_add --template="requirements.txt" --destination="$install_dir/requirements.txt"
 
 myynh_setup_python_venv
 
 #=================================================
-# copy config files
+# APP INITIAL CONFIGURATION
 # ================================================
-ynh_script_progression "Create $app configuration files..."
+ynh_script_progression "Adding $app configuration files..."
 
 ynh_config_add --template="gunicorn.conf.py" --destination="$install_dir/gunicorn.conf.py"
-
-mkdir -p "$data_dir/FastAPIAppFolder"
 ynh_config_add --template="__init__.py" --destination="$data_dir/FastAPIAppFolder/__init__.py"
-ynh_app_setting_set --key=main_folder --value="FastAPIAppFolder"
-ynh_app_setting_set --key=requirements_path --value=""
+
+chown -R "$app:" "$data_dir"
 
 # Add the password to this user
 chpasswd <<< "${app}:${password}"
 
 #=================================================
-# SECURE FILES AND DIRECTORIES
+# SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression "Set file permissions..."
-
-myynh_fix_file_permissions
-
-#=================================================
-# NGINX CONFIGURATION
-#=================================================
-ynh_script_progression "Configuring NGINX web server..."
+ynh_script_progression "Adding system configurations related to $app..."
 
 ynh_config_add_nginx
 
 ynh_config_add_systemd
+yunohost service add "$app" --description="Gunicorn running a FastAPI app" --log="/var/log/$app/$app.log"
 
-yunohost service add $app --description="Gunicorn running a FastAPI app" --log="/var/log/$app/$app.log"
+ynh_config_add_logrotate
+chown -R "$app:$app" "/var/log/$app"
 
 #=================================================
-# Start the app server via systemd
+# START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression "Starting systemd service '$app'..."
+ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service=$app --action="start" --log_path="$log_file"
+ynh_systemctl --service="$app" --action="start" --log_path="/var/log/$app/$app.log"
 
 #=================================================
 # END OF SCRIPT
