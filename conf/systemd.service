@@ -1,15 +1,14 @@
 [Unit]
 Description=__APP__ server
+After=network.target
 
 [Service]
-#Type=simple
+Type=simple
 User=__APP__
 Group=__APP__
 WorkingDirectory=__DATA_DIR__/
-
 # UVICORN_ROOT_PATH is used by FastAPI to serve the 'docs' page correctly
 Environment="UVICORN_ROOT_PATH=__PATH__"
-
 ExecStart=__INSTALL_DIR__/venv/bin/gunicorn --config __INSTALL_DIR__/gunicorn.conf.py FastAPIAppFolder:app --worker-class uvicorn.workers.UvicornWorker
 
 Restart=on-failure
@@ -18,12 +17,11 @@ StartLimitIntervalSec=60
 StartLimitBurst=5
 
 StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=__APP__-server
+StandardError=inherit
 
+### Depending on specificities of your service/app, you may need to tweak these
+### .. but this should be a good baseline
 # Sandboxing options to harden security
-# Depending on specificities of your service/app, you may need to tweak these
-# .. but this should be a good baseline
 # Details for these options: https://www.freedesktop.org/software/systemd/man/systemd.exec.html
 NoNewPrivileges=yes
 PrivateTmp=yes
