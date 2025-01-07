@@ -1,6 +1,8 @@
+#!/usr/bin/env python3
 """
-    Configuration for Gunicorn
+Configuration for Gunicorn
 """
+
 import multiprocessing
 
 
@@ -13,8 +15,8 @@ workers = multiprocessing.cpu_count() * 2 + 1
 loglevel = 'info'
 
 # https://docs.gunicorn.org/en/latest/settings.html#logging
-accesslog = '__LOG_FILE__'
-errorlog = '__LOG_FILE__'
+accesslog = '/var/log/__APP__/__APP__.log'
+errorlog = '/var/log/__APP__/__APP__.log'
 
 # https://docs.gunicorn.org/en/latest/settings.html#pidfile
 pidfile = '__INSTALL_DIR__/gunicorn.pid'

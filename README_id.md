@@ -5,7 +5,9 @@ Ini TIDAK boleh diedit dengan tangan.
 
 # FastAPI untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/fastapi.svg)](https://ci-apps.yunohost.org/ci/apps/fastapi/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/fastapi.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/fastapi.maintain.svg)
+[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/fastapi)](https://ci-apps.yunohost.org/ci/apps/fastapi/)
+![Status kerja](https://apps.yunohost.org/badge/state/fastapi)
+![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/fastapi)
 
 [![Pasang FastAPI dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=fastapi)
 
@@ -18,7 +20,7 @@ Ini TIDAK boleh diedit dengan tangan.
 
 This Application install a FastAPI application "Hello Word" ready to be customized by your own code
 
-**Versi terkirim:** 1.0~ynh3
+**Versi terkirim:** 1.0~ynh4
 
 ## Tangkapan Layar
 
