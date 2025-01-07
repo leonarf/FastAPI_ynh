@@ -1,6 +1,8 @@
+#!/usr/bin/env python3
 """
-    Configuration for Gunicorn
+Configuration for Gunicorn
 """
+
 import multiprocessing
 
 
