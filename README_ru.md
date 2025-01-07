@@ -5,7 +5,9 @@
 
 # FastAPI для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/fastapi.svg)](https://ci-apps.yunohost.org/ci/apps/fastapi/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/fastapi.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/fastapi.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/fastapi)](https://ci-apps.yunohost.org/ci/apps/fastapi/)
+![Состояние работы](https://apps.yunohost.org/badge/state/fastapi)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/fastapi)
 
 [![Установите FastAPI с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=fastapi)
 
@@ -18,7 +20,7 @@
 
 This Application install a FastAPI application "Hello Word" ready to be customized by your own code
 
-**Поставляемая версия:** 1.0~ynh3
+**Поставляемая версия:** 1.0~ynh4
 
 ## Снимки экрана
 

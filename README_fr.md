@@ -5,7 +5,9 @@ Il NE doit PAS être modifié à la main.
 
 # FastAPI pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/fastapi.svg)](https://ci-apps.yunohost.org/ci/apps/fastapi/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/fastapi.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/fastapi.maintain.svg)
+[![Niveau d’intégration](https://apps.yunohost.org/badge/integration/fastapi)](https://ci-apps.yunohost.org/ci/apps/fastapi/)
+![Statut du fonctionnement](https://apps.yunohost.org/badge/state/fastapi)
+![Statut de maintenance](https://apps.yunohost.org/badge/maintained/fastapi)
 
 [![Installer FastAPI avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=fastapi)
 
@@ -18,7 +20,7 @@ Il NE doit PAS être modifié à la main.
 
 Cette application installe une application FastAPI "Hello world" prête à être personnalisée par votre propre code.
 
-**Version incluse :** 1.0~ynh3
+**Version incluse :** 1.0~ynh4
 
 ## Captures d’écran
 

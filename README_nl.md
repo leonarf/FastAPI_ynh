@@ -5,7 +5,9 @@ Hij mag NIET handmatig aangepast worden.
 
 # FastAPI voor Yunohost
 
-[![Integratieniveau](https://dash.yunohost.org/integration/fastapi.svg)](https://ci-apps.yunohost.org/ci/apps/fastapi/) ![Mate van functioneren](https://ci-apps.yunohost.org/ci/badges/fastapi.status.svg) ![Onderhoudsstatus](https://ci-apps.yunohost.org/ci/badges/fastapi.maintain.svg)
+[![Integratieniveau](https://apps.yunohost.org/badge/integration/fastapi)](https://ci-apps.yunohost.org/ci/apps/fastapi/)
+![Mate van functioneren](https://apps.yunohost.org/badge/state/fastapi)
+![Onderhoudsstatus](https://apps.yunohost.org/badge/maintained/fastapi)
 
 [![FastAPI met Yunohost installeren](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=fastapi)
 
@@ -18,7 +20,7 @@ Hij mag NIET handmatig aangepast worden.
 
 This Application install a FastAPI application "Hello Word" ready to be customized by your own code
 
-**Geleverde versie:** 1.0~ynh3
+**Geleverde versie:** 1.0~ynh4
 
 ## Schermafdrukken
 

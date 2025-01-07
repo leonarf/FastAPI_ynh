@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # FastAPI YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/fastapi.svg)](https://ci-apps.yunohost.org/ci/apps/fastapi/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/fastapi.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/fastapi.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/fastapi)](https://ci-apps.yunohost.org/ci/apps/fastapi/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/fastapi)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/fastapi)
 
 [![Instalatu FastAPI YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=fastapi)
 
@@ -18,7 +20,7 @@ EZ editatu eskuz.
 
 This Application install a FastAPI application "Hello Word" ready to be customized by your own code
 
-**Paketatutako bertsioa:** 1.0~ynh3
+**Paketatutako bertsioa:** 1.0~ynh4
 
 ## Pantaila-argazkiak
 
