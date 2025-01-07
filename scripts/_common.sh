@@ -31,6 +31,7 @@ myynh_setup_python_venv() {
         ynh_safe_rm "$install_dir/venv"
     fi
 
+    pushd "$install_dir"
     # Skip pip because of: https://github.com/YunoHost/issues/issues/1960
     ynh_exec_as_app python3 -m venv --without-pip "$install_dir/venv"
 
@@ -38,4 +39,5 @@ myynh_setup_python_venv() {
     # using --no-cache-dir option because user doesn't have permission to write on cache directory (don't know if it's on purpose or not)
     ynh_exec_as_app "$install_dir/venv/bin/pip3" install --no-cache-dir --upgrade wheel pip setuptools
     ynh_exec_as_app "$install_dir/venv/bin/pip3" install --no-cache-dir -r "$install_dir/$requirements_path"
+    popd
 }
